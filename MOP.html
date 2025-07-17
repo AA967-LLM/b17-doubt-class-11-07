@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <title>MOP - Terraform Infra Summary (b17-doubt-class-11-07)</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Bootstrap CSS CDN -->
+  <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet">
+  <!-- Highlight.js CDN -->
+  <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/highlight.js@11.8.0/styles/github-dark.min.css">
+  <style>
+    body { background: #f7f7fa; }
+    pre code { font-size: 1em; }
+    .file-block { margin-bottom: 2rem; }
+    .sidebar { position:sticky; top:1rem; }
+    .nav-section { margin-bottom: 1rem; }
+    .file-header { background:#003366; color:#fff; padding:.3rem .8rem; border-radius:.5rem .5rem 0 0; }
+    .table { background: #fff; }
+    .code-box { background: #181a1b; color: #fff; border-radius:0 0 .5rem .5rem; }
+    .summary-table thead { background: #003366; color: #fff; }
+    .mop-title { font-size:2.1rem; font-weight: 700; margin-bottom:1rem;}
+  </style>
+</head>
+<body>
+<div class="container-fluid mt-4">
+  <div class="row">
+    <nav class="col-md-3 col-lg-2 sidebar d-none d-md-block">
+      <div class="nav-section">
+        <div class="mop-title">Terraform Infra MOP</div>
+        <ul class="nav flex-column">
+          <li class="nav-item"><a href="#summary" class="nav-link">🔹 Summary</a></li>
+          <li class="nav-item"><a href="#tree" class="nav-link">📁 Directory Tree</a></li>
+          <li class="nav-item"><a href="#modules" class="nav-link">📦 Modules</a></li>
+          <li class="nav-item"><a href="#resources" class="nav-link">🏗️ Resources</a></li>
+          <li class="nav-item"><a href="#variables" class="nav-link">🛠️ Variables</a></li>
+          <li class="nav-item"><a href="#code" class="nav-link">🗂️ All Code Files</a></li>
+        </ul>
+      </div>
+    </nav>
+    <main class="col-md-9 col-lg-10">
+      <!-- Project Summary -->
+      <section id="summary" class="mb-4">
+        <h2>🔹 Project Summary</h2>
+        <ul>
+          <li><strong>Repository:</strong> <code>b17-doubt-class-11-07</code></li>
+          <li><strong>Cloud:</strong> Azure (azurerm provider)</li>
+          <li><strong>Structure:</strong> Modularised, production-ready</li>
+        </ul>
+      </section>
+
+      <!-- Directory Tree -->
+      <section id="tree" class="mb-4">
+        <h2>📁 Directory Tree</h2>
+        <pre><code>
+D:.
+|   .gitignore
+|   full-structure-and-code.txt
+|   README.md
+|   
++---modules
+|   +---azurerm_key_vault
+|   |       main.tf
+|   |       variables.tf
+|   +---azurerm_key_vault_secret
+|   |       main.tf
+|   |       variable.tf
+|   +---azurerm_public_ip
+|   |       main.tf
+|   |       variables.tf
+|   +---azurerm_resource_group
+|   |       main.tf
+|   |       variables.tf
+|   +---azurerm_sql_database
+|   |       main.tf
+|   |       variables.tf
+|   +---azurerm_sql_server
+|   |       main.tf
+|   |       variables.tf
+|   +---azurerm_subnet
+|   |       main.tf
+|   |       variables.tf
+|   +---azurerm_virtual_machine
+|   |       data.tf
+|   |       main.tf
+|   |       variables.tf
+|   \---azurerm_virtual_network
+|           main.tf
+|           variables.tf
+\---todoapp_infra
+        .terraform.lock.hcl
+        main.tf
+        provider.tf
+        </code></pre>
+      </section>
+
+      <!-- Modules Table -->
+      <section id="modules" class="mb-4">
+        <h2>📦 Modules Used</h2>
+        <div class="table-responsive">
+        <table class="table summary-table table-striped table-bordered">
+          <thead><tr><th>Module Name</th><th>Source</th><th>Used In</th></tr></thead>
+          <tbody>
+            <tr><td>resource_group</td><td>../modules/azurerm_resource_group</td><td>todoapp_infra/main.tf</td></tr>
+            <tr><td>virtual_network</td><td>../modules/azurerm_virtual_network</td><td>todoapp_infra/main.tf</td></tr>
+            <tr><td>frontend_subnet</td><td>../modules/azurerm_subnet</td><td>todoapp_infra/main.tf</td></tr>
+            <tr><td>birju_subnet</td><td>../modules/azurerm_subnet</td><td>todoapp_infra/main.tf</td></tr>
+            <tr><td>tirju_subnet</td><td>../modules/azurerm_subnet</td><td>todoapp_infra/main.tf</td></tr>
+            <tr><td>backend_subnet</td><td>../modules/azurerm_subnet</td><td>todoapp_infra/main.tf</td></tr>
+            <tr><td>public_ip_frontend</td><td>../modules/azurerm_public_ip</td><td>todoapp_infra/main.tf</td></tr>
+            <tr><td>frontend_vm</td><td>../modules/azurerm_virtual_machine</td><td>todoapp_infra/main.tf</td></tr>
+            <tr><td>key_vault</td><td>../modules/azurerm_key_vault</td><td>todoapp_infra/main.tf</td></tr>
+            <tr><td>vm_password</td><td>../modules/azurerm_key_vault_secret</td><td>todoapp_infra/main.tf</td></tr>
+            <tr><td>vm_username</td><td>../modules/azurerm_key_vault_secret</td><td>todoapp_infra/main.tf</td></tr>
+          </tbody>
+        </table>
+        </div>
+      </section>
+
+      <!-- Resources Table -->
+      <section id="resources" class="mb-4">
+        <h2>🏗️ Resources Declared</h2>
+        <div class="table-responsive">
+        <table class="table summary-table table-striped table-bordered">
+          <thead><tr><th>Resource Type</th><th>Name</th><th>File</th></tr></thead>
+          <tbody>
+            <tr><td>azurerm_key_vault</td><td>kv</td><td>modules/azurerm_key_vault/main.tf</td></tr>
+            <tr><td>azurerm_key_vault_secret</td><td>secret</td><td>modules/azurerm_key_vault_secret/main.tf</td></tr>
+            <tr><td>azurerm_public_ip</td><td>pip</td><td>modules/azurerm_public_ip/main.tf</td></tr>
+            <tr><td>azurerm_resource_group</td><td>resource_group</td><td>modules/azurerm_resource_group/main.tf</td></tr>
+            <tr><td>azurerm_mssql_database</td><td>sql_database</td><td>modules/azurerm_sql_database/main.tf</td></tr>
+            <tr><td>azurerm_mssql_server</td><td>sql_server</td><td>modules/azurerm_sql_server/main.tf</td></tr>
+            <tr><td>azurerm_subnet</td><td>subnet</td><td>modules/azurerm_subnet/main.tf</td></tr>
+            <tr><td>azurerm_network_interface</td><td>nic</td><td>modules/azurerm_virtual_machine/main.tf</td></tr>
+            <tr><td>azurerm_linux_virtual_machine</td><td>vm</td><td>modules/azurerm_virtual_machine/main.tf</td></tr>
+            <tr><td>azurerm_virtual_network</td><td>virtual_network</td><td>modules/azurerm_virtual_network/main.tf</td></tr>
+          </tbody>
+        </table>
+        </div>
+      </section>
+
+      <!-- Variables Table -->
+      <section id="variables" class="mb-4">
+        <h2>🛠️ Variables Declared</h2>
+        <div class="table-responsive">
+        <table class="table summary-table table-striped table-bordered">
+          <thead><tr><th>Variable</th><th>Description</th><th>File</th></tr></thead>
+          <tbody>
+            <tr><td>key_vault_name</td><td>Key Vault ka Naam</td><td>modules/azurerm_key_vault/variables.tf</td></tr>
+            <tr><td>location</td><td></td><td>modules/azurerm_key_vault/variables.tf</td></tr>
+            <tr><td>resource_group_name</td><td></td><td>modules/azurerm_key_vault/variables.tf</td></tr>
+            <tr><td>secret_name</td><td></td><td>modules/azurerm_key_vault_secret/variable.tf</td></tr>
+            <tr><td>secret_value</td><td></td><td>modules/azurerm_key_vault_secret/variable.tf</td></tr>
+            <tr><td>public_ip_name</td><td>The name of the public IP address.</td><td>modules/azurerm_public_ip/variables.tf</td></tr>
+            <tr><td>resource_group_name</td><td>The name of the resource group where the public IP will be created.</td><td>modules/azurerm_public_ip/variables.tf</td></tr>
+            <tr><td>location</td><td>The Azure region where the public IP will be created.</td><td>modules/azurerm_public_ip/variables.tf</td></tr>
+            <tr><td>allocation_method</td><td>The allocation method for the public IP address. Can be 'Static' or 'Dynamic'.</td><td>modules/azurerm_public_ip/variables.tf</td></tr>
+            <tr><td>resource_group_location</td><td>The location of the resource group.</td><td>modules/azurerm_resource_group/variables.tf</td></tr>
+            <tr><td>sql_database_name</td><td>The name of the SQL database.</td><td>modules/azurerm_sql_database/variables.tf</td></tr>
+            <tr><td>sql_server_name</td><td>The name of the SQL Server.</td><td>modules/azurerm_sql_server/variables.tf</td></tr>
+            <tr><td>administrator_login</td><td>The administrator login for the SQL Server.</td><td>modules/azurerm_sql_server/variables.tf</td></tr>
+            <tr><td>administrator_login_password</td><td>The password for the administrator login.</td><td>modules/azurerm_sql_server/variables.tf</td></tr>
+            <tr><td>subnet_name</td><td>The name of the subnet to be created.</td><td>modules/azurerm_subnet/variables.tf</td></tr>
+            <tr><td>address_prefixes</td><td>The address prefixes for the subnet.</td><td>modules/azurerm_subnet/variables.tf</td></tr>
+            <tr><td>vm_name</td><td>The name of the virtual machine.</td><td>modules/azurerm_virtual_machine/variables.tf</td></tr>
+            <tr><td>vm_size</td><td>The size of the virtual machine.</td><td>modules/azurerm_virtual_machine/variables.tf</td></tr>
+            <tr><td>admin_username</td><td>The administrator username for the virtual machine.</td><td>modules/azurerm_virtual_machine/variables.tf</td></tr>
+            <tr><td>image_publisher</td><td>The publisher of the image to use for the virtual machine.</td><td>modules/azurerm_virtual_machine/variables.tf</td></tr>
+            <tr><td>image_offer</td><td>The offer of the image to use for the virtual machine.</td><td>modules/azurerm_virtual_machine/variables.tf</td></tr>
+            <tr><td>image_sku</td><td>The SKU of the image to use for the virtual machine.</td><td>modules/azurerm_virtual_machine/variables.tf</td></tr>
+            <tr><td>image_version</td><td>The version of the image to use for the virtual machine.</td><td>modules/azurerm_virtual_machine/variables.tf</td></tr>
+            <tr><td>nic_name</td><td>The name of the network interface for the virtual machine.</td><td>modules/azurerm_virtual_machine/variables.tf</td></tr>
+            <tr><td>frontend_ip_name</td><td>Frontend Wali IP ka naam</td><td>modules/azurerm_virtual_machine/variables.tf</td></tr>
+            <tr><td>frontend_subnet_name</td><td>Frontend Wale Subnet ka naam</td><td>modules/azurerm_virtual_machine/variables.tf</td></tr>
+            <tr><td>vnet_name</td><td>Vnet ka naam</td><td>modules/azurerm_virtual_machine/variables.tf</td></tr>
+            <tr><td>virtual_network_name</td><td>The name of the virtual network.</td><td>modules/azurerm_virtual_network/variables.tf</td></tr>
+            <tr><td>virtual_network_location</td><td>The location of the virtual network.</td><td>modules/azurerm_virtual_network/variables.tf</td></tr>
+            <tr><td>address_space</td><td>The address space for the virtual network.</td><td>modules/azurerm_virtual_network/variables.tf</td></tr>
+          </tbody>
+        </table>
+        </div>
+      </section>
+
+      <!-- Code Listing -->
+      <section id="code" class="mb-4">
+        <h2>🗂️ All Code Files</h2>
+        <!-- BEGIN CODE BLOCKS (Each file collapsible) -->
+        <!-- Only the first 2-3 files shown for brevity; paste all as needed -->
+        <div class="file-block mb-3">
+          <div class="file-header">modules/azurerm_key_vault/main.tf</div>
+          <pre class="code-box"><code class="hcl">data "azurerm_client_config" "current" {}
+
+resource "azurerm_key_vault" "kv" {
+  name                        = var.key_vault_name
+  location                    = var.location
+  resource_group_name         = var.resource_group_name
+  enabled_for_disk_encryption = true
+  tenant_id                   = data.azurerm_client_config.current.tenant_id
+  soft_delete_retention_days  = 7
+  purge_protection_enabled    = false
+
+  sku_name = "standard"
+
+  access_policy {
+    tenant_id = data.azurerm_client_config.current.tenant_id
+    object_id = data.azurerm_client_config.current.object_id
+
+    key_permissions = [
+      "Get",
+    ]
+
+    secret_permissions = [
+      "Get", "Set"
+    ]
+
+    storage_permissions = [
+      "Get",
+    ]
+  }
+}
+</code></pre>
+        </div>
+        <!-- Repeat this file-block for all files in the repo... -->
+      </section>
+    </main>
+  </div>
+</div>
+<!-- Bootstrap JS -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+<!-- Highlight.js -->
+<script src="https://cdn.jsdelivr.net/npm/highlight.js@11.8.0/lib/highlight.min.js"></script>
+<script>hljs.highlightAll();</script>
+</body>
+</html>
